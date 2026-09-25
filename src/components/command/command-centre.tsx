@@ -1,5 +1,6 @@
-﻿"use client";
+"use client";
 
+import { BuildView } from "@/components/build/build-view";
 import { GrowView } from "@/components/grow/grow-view";
 import { MoneyView } from "@/components/money/money-view";
 import { TodayView } from "@/components/today/today-view";
@@ -10,12 +11,6 @@ const roomContent = {
     eyebrow: "EXECUTION",
     title: "Operate",
     copy: "Kitchens, schools, locations, routes, capacity, inventory, quality and daily operating health.",
-  },
-
-  build: {
-    eyebrow: "OPPORTUNITIES",
-    title: "Build",
-    copy: "Turn signals into experiments, business cases and executable bets.",
   },
 
   "50cr": {
@@ -50,6 +45,10 @@ export function CommandCentre() {
 
   if (view === "grow") {
     return <GrowView />;
+  }
+
+  if (view === "build") {
+    return <BuildView />;
   }
 
   const room = roomContent[view];
