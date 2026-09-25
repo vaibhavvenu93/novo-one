@@ -1310,3 +1310,868 @@
     font-size: 31px;
   }
 }
+/* -------------------------------------------------------
+   SCENARIO LAB
+------------------------------------------------------- */
+
+.scenario-lab {
+  margin-top: 0;
+  padding: 56px 0 80px;
+
+  border-top: 1px solid #dcdcd5;
+}
+
+.scenario-lab__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+
+  padding: 0 0 34px;
+}
+
+.scenario-lab__header h2 {
+  max-width: 760px;
+
+  margin: 13px 0 12px;
+
+  font-size: 34px;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+
+  color: #171714;
+}
+
+.scenario-lab__header p {
+  max-width: 720px;
+
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.65;
+
+  color: #6e6e67;
+}
+
+.scenario-lab__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 5px;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+
+  color: #777770;
+}
+
+.scenario-lab__status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+  background: #27865c;
+}
+
+.scenario-lab__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(340px, 0.75fr);
+
+  border-top: 1px solid #dcdcd5;
+  border-bottom: 1px solid #dcdcd5;
+}
+
+.scenario-levers {
+  padding-right: 44px;
+
+  border-right: 1px solid #dcdcd5;
+}
+
+.scenario-lever {
+  padding: 25px 0 24px;
+
+  border-bottom: 1px solid #e1e1da;
+}
+
+.scenario-lever:last-child {
+  border-bottom: 0;
+}
+
+.scenario-lever__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+
+  margin-bottom: 19px;
+}
+
+.scenario-lever__top strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #171714;
+}
+
+.scenario-lever__top p {
+  margin: 0;
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  color: #85857e;
+}
+
+.scenario-lever__value {
+  min-width: 58px;
+
+  font-size: 17px;
+  font-weight: 600;
+  text-align: right;
+
+  color: #171714;
+}
+
+.scenario-lever__value.positive,
+.scenario-result .positive {
+  color: #247451;
+}
+
+.scenario-lever__value.negative,
+.scenario-result .negative {
+  color: #a34d42;
+}
+
+.scenario-lever input[type="range"] {
+  width: 100%;
+  height: 2px;
+
+  appearance: none;
+
+  border-radius: 0;
+  background: #d7d7d0;
+
+  cursor: pointer;
+}
+
+.scenario-lever input[type="range"]::-webkit-slider-thumb {
+  width: 14px;
+  height: 14px;
+
+  appearance: none;
+
+  border: 2px solid #f7f7f3;
+  border-radius: 50%;
+
+  background: #171714;
+  box-shadow: 0 0 0 1px #171714;
+}
+
+.scenario-lever input[type="range"]::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+
+  border: 2px solid #f7f7f3;
+  border-radius: 50%;
+
+  background: #171714;
+  box-shadow: 0 0 0 1px #171714;
+}
+
+.scenario-lever__range {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 9px;
+
+  font-size: 9px;
+  color: #a0a099;
+}
+
+.scenario-result {
+  padding: 28px 0 28px 40px;
+}
+
+.scenario-result__hero {
+  padding: 23px 0 28px;
+
+  border-bottom: 1px solid #dcdcd5;
+}
+
+.scenario-result__hero > span,
+.scenario-result__metrics span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #91918a;
+}
+
+.scenario-result__hero strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 39px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+
+  color: #171714;
+}
+
+.scenario-result__hero small {
+  font-size: 11px;
+  color: #85857e;
+}
+
+.scenario-result__metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  border-bottom: 1px solid #dcdcd5;
+}
+
+.scenario-result__metrics > div {
+  padding: 20px 14px 20px 0;
+
+  border-bottom: 1px solid #e4e4de;
+}
+
+.scenario-result__metrics > div:nth-child(odd) {
+  border-right: 1px solid #e4e4de;
+}
+
+.scenario-result__metrics > div:nth-child(even) {
+  padding-left: 20px;
+}
+
+.scenario-result__metrics strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+
+  color: #171714;
+}
+
+.scenario-result__metrics small {
+  font-size: 10px;
+  color: #92928b;
+}
+
+.scenario-result__interpretation {
+  padding: 24px 0;
+
+  border-bottom: 1px solid #dcdcd5;
+}
+
+.scenario-result__interpretation p {
+  margin: 12px 0 0;
+
+  font-size: 13px;
+  line-height: 1.65;
+
+  color: #62625c;
+}
+
+.scenario-result__interpretation strong {
+  color: #171714;
+}
+
+.scenario-result__actions {
+  display: grid;
+  grid-template-columns: 0.85fr 1.3fr;
+  gap: 8px;
+
+  padding-top: 24px;
+}
+
+.scenario-result__actions button {
+  min-height: 45px;
+
+  padding: 0 14px;
+
+  border: 1px solid #cecec7;
+  background: transparent;
+
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+
+  color: #55554f;
+
+  cursor: pointer;
+}
+
+.scenario-result__actions button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.scenario-result__actions .scenario-result__primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-color: #171714;
+  background: #171714;
+  color: #ffffff;
+}
+
+.scenario-result__foot {
+  margin-top: 18px;
+
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  color: #9b9b94;
+}
+
+@media (max-width: 980px) {
+  .scenario-lab__body {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-levers {
+    padding-right: 0;
+
+    border-right: 0;
+  }
+
+  .scenario-result {
+    padding-left: 0;
+    padding-top: 40px;
+
+    border-top: 1px solid #dcdcd5;
+  }
+}
+/* -------------------------------------------------------
+   FIND MONEY
+------------------------------------------------------- */
+
+.find-money {
+  padding: 64px 0 90px;
+
+  border-top: 1px solid #dcdcd5;
+
+  scroll-margin-top: 90px;
+}
+
+.find-money-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 60px;
+
+  padding-bottom: 38px;
+}
+
+.find-money-header h2 {
+  margin: 13px 0 12px;
+
+  font-size: 46px;
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  font-weight: 500;
+
+  color: #171714;
+}
+
+.find-money-header p {
+  max-width: 760px;
+
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.65;
+
+  color: #6e6e67;
+}
+
+.find-money-target {
+  flex: 0 0 auto;
+
+  padding-top: 3px;
+}
+
+.find-money-target > span {
+  display: block;
+
+  margin-bottom: 11px;
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+
+  color: #91918a;
+}
+
+.find-money-target > div {
+  display: flex;
+
+  border: 1px solid #d4d4cd;
+}
+
+.find-money-target button {
+  min-width: 68px;
+  min-height: 38px;
+
+  padding: 0 13px;
+
+  border: 0;
+  border-right: 1px solid #d4d4cd;
+
+  background: transparent;
+
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+
+  color: #777770;
+
+  cursor: pointer;
+}
+
+.find-money-target button:last-child {
+  border-right: 0;
+}
+
+.find-money-target button.active {
+  background: #171714;
+  color: #ffffff;
+}
+
+.find-money-summary {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+
+  border-top: 1px solid #d8d8d1;
+  border-bottom: 1px solid #d8d8d1;
+}
+
+.find-money-summary__hero {
+  padding: 34px 46px 34px 0;
+
+  border-right: 1px solid #d8d8d1;
+}
+
+.find-money-summary__hero h3 {
+  margin: 13px 0 11px;
+
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+
+  color: #171714;
+}
+
+.find-money-summary__hero p {
+  max-width: 610px;
+
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.65;
+
+  color: #71716a;
+}
+
+.find-money-summary__hero strong {
+  color: #171714;
+}
+
+.find-money-summary__coverage {
+  padding: 34px 0 28px 40px;
+}
+
+.find-money-summary__coverage-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  margin-bottom: 17px;
+}
+
+.find-money-summary__coverage-top span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #92928b;
+}
+
+.find-money-summary__coverage-top strong {
+  font-size: 27px;
+  font-weight: 500;
+
+  color: #171714;
+}
+
+.find-money-summary__track {
+  height: 4px;
+
+  overflow: hidden;
+
+  background: #e2e2dc;
+}
+
+.find-money-summary__track > div {
+  height: 100%;
+
+  background: #171714;
+}
+
+.find-money-summary__breakdown {
+  grid-column: 1 / -1;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  border-top: 1px solid #d8d8d1;
+}
+
+.find-money-summary__breakdown > div {
+  padding: 23px 25px 23px 0;
+
+  border-right: 1px solid #d8d8d1;
+}
+
+.find-money-summary__breakdown > div:not(:first-child) {
+  padding-left: 25px;
+}
+
+.find-money-summary__breakdown > div:last-child {
+  border-right: 0;
+}
+
+.find-money-summary__breakdown span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+
+  color: #92928b;
+}
+
+.find-money-summary__breakdown strong {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 25px;
+  line-height: 1;
+  font-weight: 500;
+
+  color: #171714;
+}
+
+.find-money-summary__breakdown small {
+  font-size: 10px;
+  color: #9b9b94;
+}
+
+.find-money-plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding: 54px 0 25px;
+}
+
+.find-money-plan-header h3 {
+  margin: 11px 0 0;
+
+  font-size: 27px;
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+
+  color: #171714;
+}
+
+.find-money-plan-header > span {
+  padding-bottom: 4px;
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+
+  color: #93938c;
+}
+
+.find-money-opportunities {
+  border-top: 1px solid #d8d8d1;
+}
+
+.find-money-opportunity {
+  display: grid;
+  grid-template-columns:
+    60px
+    minmax(0, 1fr)
+    170px
+    160px;
+  gap: 0;
+
+  min-height: 175px;
+
+  border-bottom: 1px solid #d8d8d1;
+}
+
+.find-money-opportunity__rank {
+  padding-top: 29px;
+
+  font-size: 10px;
+  color: #a0a098;
+}
+
+.find-money-opportunity__body {
+  padding: 27px 35px 27px 0;
+}
+
+.find-money-opportunity__tags {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+
+  color: #979790;
+}
+
+.find-money-state {
+  color: #65655f;
+}
+
+.find-money-state.identified {
+  color: #246b4c;
+}
+
+.find-money-state.to-prove {
+  color: #8b6829;
+}
+
+.find-money-opportunity__body h3 {
+  margin: 0 0 7px;
+
+  font-size: 18px;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+
+  color: #171714;
+}
+
+.find-money-opportunity__body > p {
+  max-width: 680px;
+
+  margin: 0;
+
+  font-size: 12px;
+  line-height: 1.6;
+
+  color: #7c7c75;
+}
+
+.find-money-opportunity__action {
+  display: flex;
+  gap: 12px;
+
+  margin-top: 16px;
+}
+
+.find-money-opportunity__action span {
+  flex: 0 0 auto;
+
+  padding-top: 2px;
+
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+
+  color: #a0a099;
+}
+
+.find-money-opportunity__action p {
+  margin: 0;
+
+  font-size: 11px;
+  line-height: 1.45;
+
+  color: #565650;
+}
+
+.find-money-opportunity__value {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+
+  padding-right: 30px;
+
+  border-left: 1px solid #e1e1db;
+}
+
+.find-money-opportunity__value strong {
+  margin-bottom: 4px;
+
+  font-size: 23px;
+  font-weight: 500;
+
+  color: #171714;
+}
+
+.find-money-opportunity__value span {
+  margin-bottom: 9px;
+
+  font-size: 8px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+
+  color: #9b9b94;
+}
+
+.find-money-opportunity__value small {
+  font-size: 9px;
+  color: #8b8b84;
+}
+
+.find-money-opportunity__button {
+  align-self: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 44px;
+
+  padding: 0 0 0 18px;
+
+  border: 0;
+  border-bottom: 1px solid #bdbdb6;
+
+  background: transparent;
+
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  text-align: left;
+
+  color: #171714;
+
+  cursor: pointer;
+}
+
+.find-money-opportunity__button:hover {
+  border-color: #171714;
+}
+
+.find-money-footer {
+  display: grid;
+  grid-template-columns: 9px 1fr;
+  gap: 13px;
+
+  padding-top: 22px;
+}
+
+.find-money-footer > span {
+  width: 6px;
+  height: 6px;
+
+  margin-top: 6px;
+
+  border-radius: 50%;
+
+  background: #9c9c95;
+}
+
+.find-money-footer p {
+  margin: 0;
+
+  font-size: 10px;
+  line-height: 1.6;
+
+  color: #92928b;
+}
+
+@media (max-width: 1050px) {
+  .find-money-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .find-money-summary__hero {
+    border-right: 0;
+  }
+
+  .find-money-summary__coverage {
+    padding-left: 0;
+
+    border-top: 1px solid #d8d8d1;
+  }
+
+  .find-money-opportunity {
+    grid-template-columns:
+      45px
+      minmax(0, 1fr)
+      140px;
+  }
+
+  .find-money-opportunity__button {
+    grid-column: 2 / -1;
+
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .find-money-header {
+    flex-direction: column;
+  }
+
+  .find-money-summary__breakdown {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .find-money-opportunity {
+    grid-template-columns: 36px 1fr;
+  }
+
+  .find-money-opportunity__value {
+    grid-column: 2;
+
+    align-items: flex-start;
+
+    padding: 0 0 20px;
+
+    border-left: 0;
+  }
+
+  .find-money-opportunity__button {
+    grid-column: 2;
+  }
+}

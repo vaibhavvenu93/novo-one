@@ -1,12 +1,15 @@
 "use client";
 
 import { BrandEconomics } from "@/components/money/brand-economics";
+import { FindMoney } from "@/components/money/find-money";
 import { LeakageRadar } from "@/components/money/leakage-radar";
 import { MarginDrivers } from "@/components/money/margin-drivers";
 import { MoneyHero } from "@/components/money/money-hero";
 import { PnlWaterfall } from "@/components/money/pnl-waterfall";
+import { ScenarioLab } from "@/components/money/scenario-lab";
 
 import { useNovo } from "@/context/novo-context";
+
 import {
   getFinanceLeakages,
   getFinanceSnapshot,
@@ -39,6 +42,15 @@ export function MoneyView() {
 
   const contextLabel =
     brandLabels[brandId] ?? "the current business";
+
+  const scrollToFindMoney = () => {
+    document
+      .getElementById("find-money")
+      ?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+  };
 
   return (
     <div className="money-view">
@@ -75,7 +87,10 @@ export function MoneyView() {
               Which channel makes us the most money?
             </button>
 
-            <button type="button">
+            <button
+              type="button"
+              onClick={scrollToFindMoney}
+            >
               Find me ₹10L.
             </button>
           </div>
@@ -91,6 +106,12 @@ export function MoneyView() {
       <MarginDrivers drivers={marginDrivers} />
 
       <LeakageRadar leakages={leakages} />
+
+      <ScenarioLab filter={filter} />
+
+      <div id="find-money">
+        <FindMoney filter={filter} />
+      </div>
     </div>
   );
 }

@@ -343,3 +343,378 @@ export function runFinanceScenario(
       baseline.operatingContribution,
   };
 }
+export type MoneyOpportunityState =
+  | "identified"
+  | "modelled"
+  | "to-prove";
+
+export interface MoneyOpportunity {
+  id: string;
+  title: string;
+  description: string;
+  state: MoneyOpportunityState;
+
+  monthlyImpact: number;
+  annualImpact: number;
+
+  confidence: number;
+  effort: "low" | "medium" | "high";
+
+  evidence:
+    | "verified"
+    | "public"
+    | "modelled"
+    | "hypothesis"
+    | "needs-data";
+
+  action: string;
+}
+
+export interface FindMoneyPlan {
+  target: number;
+
+  identified: number;
+  modelled: number;
+  toProve: number;
+
+  totalPotential: number;
+  gap: number;
+
+  opportunities: MoneyOpportunity[];
+}
+
+export function findMoney(
+  filter: FinanceFilter = {},
+  target = 1_000_000
+): FindMoneyPlan {
+  const snapshot = getFinanceSnapshot(filter);
+  const leakages = getFinanceLeakages(filter);
+
+  const opportunities: MoneyOpportunity[] = [];
+
+  /*
+   * -------------------------------------------------------
+   * IDENTIFIED
+   * -------------------------------------------------------
+   *
+   * These are economic leakage signals already present in
+   * Novo's finance model.
+   *
+   * They are still only as reliable as their underlying
+   * evidence state. "Identified" means the engine has found
+   * the surface — not that cash has already been recovered.
+   */
+
+  leakages.forEach((leakage) => {
+    opportunities.push({
+      id: `find-${leakage.id}`,
+      title: leakage.title,
+
+      description:
+        `Novo has isolated approximately ₹${Math.round(
+          leakage.monthlyImpact / 1000
+        )}K per month of potential economic leakage in this area.`,
+
+      state: "identified",
+
+      monthlyImpact: leakage.monthlyImpact,
+      annualImpact: leakage.monthlyImpact * 12,
+
+      confidence: leakage.confidence,
+      effort: "low",
+
+      evidence: leakage.evidence,
+
+      action: leakage.action,
+    });
+  });
+
+  /*
+   * -------------------------------------------------------
+   * MODELLED — FOOD COST
+   * -------------------------------------------------------
+   *
+   * Scenario:
+   * What would a 2% improvement in food cost be worth?
+   */
+
+  const foodCostOpportunity =
+    snapshot.foodCost * 0.02;
+
+  if (foodCostOpportunity > 0) {
+    opportunities.push({
+      id: "find-food-cost",
+
+      title: "Take 2% out of food cost",
+
+      description:
+        "A 2% improvement in current food cost through recipe costing, purchasing discipline, yield control and supplier negotiation.",
+
+      state: "modelled",
+
+      monthlyImpact: foodCostOpportunity,
+      annualImpact: foodCostOpportunity * 12,
+
+      confidence: 0.68,
+      effort: "medium",
+
+      evidence: "modelled",
+
+      action:
+        "Build ingredient-level recipe costing, compare supplier landed costs and investigate the highest-value purchase variances.",
+    });
+  }
+
+  /*
+   * -------------------------------------------------------
+   * MODELLED — DISCOUNTS
+   * -------------------------------------------------------
+   *
+   * Scenario:
+   * Recover 20% of current discount spend without assuming
+   * equivalent revenue loss.
+   */
+
+  const discountOpportunity =
+    snapshot.discounts * 0.2;
+
+  if (discountOpportunity > 0) {
+    opportunities.push({
+      id: "find-discounts",
+
+      title: "Remove low-return discounting",
+
+      description:
+        "Models recovery of 20% of current discount spend by removing promotions that do not create sufficient incremental demand or repeat behaviour.",
+
+      state: "modelled",
+
+      monthlyImpact: discountOpportunity,
+      annualImpact: discountOpportunity * 12,
+
+      confidence: 0.58,
+      effort: "medium",
+
+      evidence: "hypothesis",
+
+      action:
+        "Run promotion-level cohort analysis and remove discounts that do not improve repeat rate, frequency or contribution.",
+    });
+  }
+
+  /*
+   * -------------------------------------------------------
+   * MODELLED — MARKETPLACE MIX
+   * -------------------------------------------------------
+   */
+
+  const marketplaceOpportunity =
+    snapshot.marketplaceCost * 0.1;
+
+  if (marketplaceOpportunity > 0) {
+    opportunities.push({
+      id: "find-marketplace",
+
+      title: "Improve marketplace mix",
+
+      description:
+        "Models a 10% reduction in marketplace commission burden by shifting repeat demand toward structurally better channels.",
+
+      state: "modelled",
+
+      monthlyImpact: marketplaceOpportunity,
+      annualImpact: marketplaceOpportunity * 12,
+
+      confidence: 0.61,
+      effort: "medium",
+
+      evidence: "modelled",
+
+      action:
+        "Identify repeat marketplace customers and test direct ordering, subscriptions, corporate ordering and owned-channel retention loops.",
+    });
+  }
+
+  /*
+   * -------------------------------------------------------
+   * MODELLED — PACKAGING
+   * -------------------------------------------------------
+   */
+
+  const packagingOpportunity =
+    snapshot.packagingCost * 0.05;
+
+  if (packagingOpportunity > 0) {
+    opportunities.push({
+      id: "find-packaging",
+
+      title: "Simplify packaging economics",
+
+      description:
+        "Models a 5% reduction in packaging cost through SKU simplification, volume concentration and procurement discipline.",
+
+      state: "modelled",
+
+      monthlyImpact: packagingOpportunity,
+      annualImpact: packagingOpportunity * 12,
+
+      confidence: 0.72,
+      effort: "low",
+
+      evidence: "modelled",
+
+      action:
+        "Map packaging SKU usage by brand and item, consolidate overlapping packs and requote the highest-volume SKUs.",
+    });
+  }
+
+  /*
+   * -------------------------------------------------------
+   * TO PROVE — LABOUR PRODUCTIVITY
+   * -------------------------------------------------------
+   *
+   * This is deliberately separated from modelled savings.
+   * We do not yet have enough operating data to claim it.
+   */
+
+  const labourOpportunity =
+    snapshot.variableLabourCost * 0.05;
+
+  if (labourOpportunity > 0) {
+    opportunities.push({
+      id: "find-labour-productivity",
+
+      title: "Prove kitchen labour productivity",
+
+      description:
+        "There may be recoverable capacity inside current kitchen labour, but shift, station and throughput data are required before Novo should count it.",
+
+      state: "to-prove",
+
+      monthlyImpact: labourOpportunity,
+      annualImpact: labourOpportunity * 12,
+
+      confidence: 0.4,
+      effort: "medium",
+
+      evidence: "needs-data",
+
+      action:
+        "Capture labour hours, production volume, station throughput and utilisation by shift before changing staffing.",
+    });
+  }
+
+  /*
+   * -------------------------------------------------------
+   * TO PROVE — DELIVERY / ROUTE DENSITY
+   * -------------------------------------------------------
+   */
+
+  const deliveryOpportunity =
+    snapshot.deliveryCost * 0.05;
+
+  if (deliveryOpportunity > 0) {
+    opportunities.push({
+      id: "find-route-density",
+
+      title: "Prove route-density savings",
+
+      description:
+        "A denser school or delivery route may reduce fulfilment cost per order, but route-level operating data is required to validate the saving.",
+
+      state: "to-prove",
+
+      monthlyImpact: deliveryOpportunity,
+      annualImpact: deliveryOpportunity * 12,
+
+      confidence: 0.42,
+      effort: "medium",
+
+      evidence: "needs-data",
+
+      action:
+        "Map route distance, drops, meals, delivery time and vehicle cost before changing the network.",
+    });
+  }
+
+  /*
+   * -------------------------------------------------------
+   * RANK
+   * -------------------------------------------------------
+   */
+
+  opportunities.sort(
+    (a, b) =>
+      b.monthlyImpact * b.confidence -
+      a.monthlyImpact * a.confidence
+  );
+
+  /*
+   * -------------------------------------------------------
+   * SUMMARISE
+   * -------------------------------------------------------
+   */
+
+  const identified = opportunities
+    .filter(
+      (opportunity) =>
+        opportunity.state === "identified"
+    )
+    .reduce(
+      (total, opportunity) =>
+        total + opportunity.monthlyImpact,
+      0
+    );
+
+  const modelled = opportunities
+    .filter(
+      (opportunity) =>
+        opportunity.state === "modelled"
+    )
+    .reduce(
+      (total, opportunity) =>
+        total + opportunity.monthlyImpact,
+      0
+    );
+
+  const toProve = opportunities
+    .filter(
+      (opportunity) =>
+        opportunity.state === "to-prove"
+    )
+    .reduce(
+      (total, opportunity) =>
+        total + opportunity.monthlyImpact,
+      0
+    );
+
+  const totalPotential =
+    identified + modelled + toProve;
+
+  /*
+   * The gap is important.
+   *
+   * If Novo can only currently find ₹3L against a ₹10L
+   * request, we show ₹7L still unresolved rather than
+   * manufacturing another opportunity to make the UI look
+   * complete.
+   */
+
+  const gap = Math.max(
+    target - totalPotential,
+    0
+  );
+
+  return {
+    target,
+
+    identified,
+    modelled,
+    toProve,
+
+    totalPotential,
+    gap,
+
+    opportunities,
+  };
+}

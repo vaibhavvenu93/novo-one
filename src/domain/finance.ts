@@ -120,3 +120,31 @@ export interface FinanceScenario {
 
   operatingContributionDelta: number;
 }
+export type MoneyOpportunityState =
+  | "identified"
+  | "modelled"
+  | "to-prove";
+
+export interface MoneyOpportunity {
+  id: string;
+  title: string;
+  description: string;
+  monthlyImpact: number;
+  confidence: number;
+  state: MoneyOpportunityState;
+  evidence: EvidenceState;
+  action: string;
+}
+
+export interface FindMoneyPlan {
+  target: number;
+
+  opportunities: MoneyOpportunity[];
+
+  identified: number;
+  modelled: number;
+  toProve: number;
+
+  totalPotential: number;
+  gap: number;
+}
