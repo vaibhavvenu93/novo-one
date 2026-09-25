@@ -8,8 +8,9 @@ import { LeakageItem } from "@/domain/finance";
 
 interface LeakageRadarProps {
   leakages: LeakageItem[];
+  focusedLeakageId?: string;
+  onClearFocus?: () => void;
 }
-
 function formatMoney(value: number) {
   if (value >= 10_000_000) {
     return `₹${(value / 10_000_000).toFixed(2)}Cr`;
@@ -35,9 +36,26 @@ function formatCategory(category: LeakageItem["category"]) {
 
 export function LeakageRadar({
   leakages,
-}: LeakageRadarProps) {
-  const [selectedLeakage, setSelectedLeakage] =
+  focusedLeakageId,
+  onClearFocus,
+}: LeakageRadarProps) {  const [selectedLeakage, setSelectedLeakage] =
     useState<LeakageItem | null>(null);
+const focusedLeakage =
+  focusedLeakageId
+    ? leakages.find(
+        (item) =>
+          item.id === focusedLeakageId
+      ) ?? null
+    : null;
+
+const activeLeakage =
+  focusedLeakage ??
+  selectedLeakage;
+
+const handleCloseInvestigation = () => {
+  onClearFocus?.();
+  setSelectedLeakage(null);
+};
 
   const totalImpact = leakages.reduce(
     (total, item) => total + item.monthlyImpact,
@@ -149,9 +167,9 @@ export function LeakageRadar({
       </section>
 
       <LeakageInvestigation
-        leakage={selectedLeakage}
-        onClose={() => setSelectedLeakage(null)}
-      />
+  leakage={activeLeakage}
+  onClose={handleCloseInvestigation}
+/>
     </>
   );
 }

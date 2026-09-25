@@ -24,11 +24,13 @@ const brandLabels = {
 };
 
 export function MoneyView() {
-  const {
-    brandId,
-    locationId,
-    period,
-  } = useNovo();
+ const {
+  brandId,
+  locationId,
+  period,
+  navigationTarget,
+  clearNavigationTarget,
+} = useNovo();
 
   const filter = {
     brandId,
@@ -105,7 +107,15 @@ export function MoneyView() {
 
       <MarginDrivers drivers={marginDrivers} />
 
-      <LeakageRadar leakages={leakages} />
+     <LeakageRadar
+  leakages={leakages}
+  focusedLeakageId={
+    navigationTarget?.view === "money"
+      ? navigationTarget.sourceId
+      : undefined
+  }
+  onClearFocus={clearNavigationTarget}
+/>
 
       <ScenarioLab filter={filter} />
 

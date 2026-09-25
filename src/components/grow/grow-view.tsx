@@ -9,6 +9,7 @@ import { OpportunityRanking } from "@/components/grow/opportunity-ranking";
 
 import { useNovo } from "@/context/novo-context";
 import type { RankedGrowthOpportunity } from "@/domain/growth";
+
 import {
   getGrowthLaneSummaries,
   getGrowthSnapshot,
@@ -23,22 +24,64 @@ const brandLabels = {
 } as const;
 
 export function GrowView() {
-  const { brandId, locationId } = useNovo();
+  const {
+    brandId,
+    locationId,
+    navigationTarget,
+    clearNavigationTarget,
+  } = useNovo();
 
-  const [selectedOpportunity, setSelectedOpportunity] =
-    useState<RankedGrowthOpportunity | null>(null);
+  const [
+    selectedOpportunity,
+    setSelectedOpportunity,
+  ] =
+    useState<RankedGrowthOpportunity | null>(
+      null
+    );
 
   const filter = {
     brandId,
     locationId,
   };
 
-  const snapshot = getGrowthSnapshot(filter);
-  const opportunities = rankGrowthOpportunities(filter);
-  const lanes = getGrowthLaneSummaries(filter);
+  const snapshot =
+    getGrowthSnapshot(filter);
+
+  const opportunities =
+    rankGrowthOpportunities(filter);
+
+  const lanes =
+    getGrowthLaneSummaries(filter);
 
   const contextLabel =
-    brandLabels[brandId] ?? "current business";
+    brandLabels[brandId] ??
+    "current business";
+
+  const focusedOpportunity =
+    navigationTarget?.view === "grow" &&
+    navigationTarget.sourceId
+      ? opportunities.find(
+          (opportunity) =>
+            opportunity.id ===
+            navigationTarget.sourceId
+        ) ?? null
+      : null;
+
+  const activeOpportunity =
+    focusedOpportunity ??
+    selectedOpportunity;
+
+  const handleSelectOpportunity = (
+    opportunity: RankedGrowthOpportunity
+  ) => {
+    clearNavigationTarget();
+    setSelectedOpportunity(opportunity);
+  };
+
+  const handleCloseOpportunity = () => {
+    clearNavigationTarget();
+    setSelectedOpportunity(null);
+  };
 
   return (
     <div className="grow-view">
@@ -51,12 +94,16 @@ export function GrowView() {
 
       <OpportunityRanking
         opportunities={opportunities}
-        onSelectOpportunity={setSelectedOpportunity}
+        onSelectOpportunity={
+          handleSelectOpportunity
+        }
       />
 
       <OpportunityDetail
-        opportunity={selectedOpportunity}
-        onClose={() => setSelectedOpportunity(null)}
+        opportunity={activeOpportunity}
+        onClose={
+          handleCloseOpportunity
+        }
       />
     </div>
   );

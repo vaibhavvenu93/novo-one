@@ -1,8 +1,9 @@
-"use client";
+﻿"use client";
 
 import { BuildView } from "@/components/build/build-view";
 import { GrowView } from "@/components/grow/grow-view";
 import { MoneyView } from "@/components/money/money-view";
+import { OperateView } from "@/components/operate/operate-view";
 import { TodayView } from "@/components/today/today-view";
 import { useNovo } from "@/context/novo-context";
 
@@ -14,16 +15,16 @@ const roomContent = {
   },
 
   "50cr": {
-    eyebrow: "FOUNDER",
-    title: "Where does the next ₹50Cr come from?",
-    copy: "Decompose the ambition into brands, channels, locations and growth engines — then pressure-test every assumption.",
-  },
+  eyebrow: "FOUNDER",
+  title: "Where does the next ₹50Cr come from?",
+  copy: "Decompose the ambition into brands, channels, locations and growth engines — then pressure-test every assumption.",
+},
 
-  "90days": {
-    eyebrow: "EXECUTION PLAN",
-    title: "The first 90 days",
-    copy: "What we diagnose, fix, grow and prove — with owners, milestones and measurable business outcomes.",
-  },
+"90days": {
+  eyebrow: "FOUNDER",
+  title: "90 Day Plan",
+  copy: "What we diagnose, fix, grow and prove — with owners, milestones and measurable business outcomes.",
+},
 
   memory: {
     eyebrow: "COMPANY INTELLIGENCE",
@@ -49,6 +50,10 @@ export function CommandCentre() {
 
   if (view === "build") {
     return <BuildView />;
+  }
+
+  if (view === "operate") {
+    return <OperateView />;
   }
 
   const room = roomContent[view];

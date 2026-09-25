@@ -66,3 +66,242 @@ h6 {
   background: #171715;
   color: white;
 }
+/* =========================================================
+   TODAY COMMAND CENTRE
+   ========================================================= */
+
+.today-command {
+  padding: 72px 72px 120px;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.today-command__hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 64px;
+  align-items: flex-start;
+  padding-bottom: 64px;
+}
+
+.today-command__eyebrow {
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.today-command__hero h1 {
+  margin: 0;
+  max-width: 820px;
+  font-size: clamp(48px, 5vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.today-command__summary {
+  margin: 28px 0 0;
+  max-width: 850px;
+  font-size: 19px;
+  line-height: 1.6;
+}
+
+.today-command__status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.today-command__status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #159957;
+}
+
+.today-command__picture {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.today-command__picture > div {
+  min-height: 155px;
+  padding: 30px 28px;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.today-command__picture > div:first-child {
+  padding-left: 0;
+}
+
+.today-command__picture > div:last-child {
+  border-right: 0;
+}
+
+.today-command__picture span,
+.today-priority__rank span,
+.today-priority__value span,
+.today-command__footer span {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.today-command__picture strong {
+  display: block;
+  margin-top: 14px;
+  font-size: 32px;
+  letter-spacing: -0.04em;
+}
+
+.today-command__picture small {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: 0.65;
+}
+
+.today-command__priorities {
+  padding-top: 72px;
+}
+
+.today-command__section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 28px;
+}
+
+.today-command__section-heading h2 {
+  margin: 0;
+  font-size: 36px;
+  letter-spacing: -0.04em;
+}
+
+.today-command__section-heading > span {
+  padding-bottom: 5px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.today-priority-list {
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.today-priority {
+  display: grid;
+  grid-template-columns:
+    100px minmax(0, 1fr) 160px 190px;
+  gap: 28px;
+  align-items: center;
+  min-height: 170px;
+  padding: 28px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.today-priority__rank strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 31px;
+  letter-spacing: -0.05em;
+}
+
+.today-priority__meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.today-priority__meta > span:first-child {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.today-priority__content h3 {
+  margin: 0;
+  font-size: 23px;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.today-priority__content > p {
+  margin: 8px 0 0;
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.55;
+  opacity: 0.72;
+}
+
+.today-priority__footer {
+  display: flex;
+  gap: 18px;
+  margin-top: 16px;
+  font-size: 11px;
+  opacity: 0.68;
+}
+
+.today-priority__value strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 22px;
+}
+
+.today-priority__action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.today-command__footer {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 650px);
+  gap: 48px;
+  margin-top: 72px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+
+.today-command__footer strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 30px;
+}
+
+.today-command__footer p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  opacity: 0.65;
+}
+
+@media (max-width: 1100px) {
+  .today-command {
+    padding: 48px 36px 100px;
+  }
+
+  .today-command__picture {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .today-priority {
+    grid-template-columns: 80px minmax(0, 1fr) 130px;
+  }
+
+  .today-priority__action {
+    grid-column: 2 / -1;
+    justify-content: flex-start;
+  }
+}

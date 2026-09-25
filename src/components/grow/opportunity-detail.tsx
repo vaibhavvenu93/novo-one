@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { ArrowRight, X } from "lucide-react";
 
 import { Provenance } from "@/components/shared/provenance";
-import { RankedGrowthOpportunity } from "@/domain/growth";
+import { useNovo } from "@/context/novo-context";
+import type { RankedGrowthOpportunity } from "@/domain/growth";
 
 interface OpportunityDetailProps {
   opportunity: RankedGrowthOpportunity | null;
@@ -25,12 +26,16 @@ function provenanceType(
   switch (evidence) {
     case "verified":
       return "verified" as const;
+
     case "public":
       return "public" as const;
+
     case "modelled":
       return "modelled" as const;
+
     case "hypothesis":
       return "hypothesis" as const;
+
     case "needs-data":
       return "needs-data" as const;
   }
@@ -40,32 +45,50 @@ export function OpportunityDetail({
   opportunity,
   onClose,
 }: OpportunityDetailProps) {
- useEffect(() => {
-  if (!opportunity) {
-    return;
-  }
+  const { sendOpportunityToBuild } = useNovo();
 
-  const previousOverflow = document.body.style.overflow;
-
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === "Escape") {
-      onClose();
+  useEffect(() => {
+    if (!opportunity) {
+      return;
     }
-  };
 
-  document.body.style.overflow = "hidden";
-  window.addEventListener("keydown", handleKeyDown);
+    const previousOverflow =
+      document.body.style.overflow;
 
-  return () => {
-    document.body.style.overflow = previousOverflow;
-    window.removeEventListener("keydown", handleKeyDown);
-  };
-}, [opportunity, onClose]);
+    const handleKeyDown = (
+      event: KeyboardEvent
+    ) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
+
+    return () => {
+      document.body.style.overflow =
+        previousOverflow;
+
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, [opportunity, onClose]);
 
   if (!opportunity) {
     return null;
   }
 
+  const handleTurnIntoExperiment = () => {
+    sendOpportunityToBuild(opportunity.id);
+    onClose();
+  };
 
   return (
     <div
@@ -78,16 +101,24 @@ export function OpportunityDetail({
         role="dialog"
         aria-modal="true"
         aria-label={opportunity.title}
-        onMouseDown={(event) => event.stopPropagation()}
+        onMouseDown={(event) =>
+          event.stopPropagation()
+        }
       >
         <header className="growth-drawer__header">
           <div>
             <span className="grow-eyebrow">
-              OPPORTUNITY #{String(opportunity.rank).padStart(2, "0")}
+              OPPORTUNITY #
+              {String(opportunity.rank).padStart(
+                2,
+                "0"
+              )}
             </span>
 
             <Provenance
-              type={provenanceType(opportunity.evidence)}
+              type={provenanceType(
+                opportunity.evidence
+              )}
             />
           </div>
 
@@ -104,12 +135,14 @@ export function OpportunityDetail({
         <div className="growth-drawer__body">
           <div className="growth-drawer__hero">
             <h2>{opportunity.title}</h2>
+
             <p>{opportunity.description}</p>
           </div>
 
           <div className="growth-drawer__metrics">
             <div>
               <span>ANNUAL REVENUE</span>
+
               <strong>
                 {formatMoney(
                   opportunity.annualRevenuePotential
@@ -119,6 +152,7 @@ export function OpportunityDetail({
 
             <div>
               <span>CONTRIBUTION</span>
+
               <strong>
                 {formatMoney(
                   opportunity.annualContributionPotential
@@ -128,35 +162,50 @@ export function OpportunityDetail({
 
             <div>
               <span>ROI</span>
+
               <strong>
-                {opportunity.roiMultiple.toFixed(1)}×
+                {opportunity.roiMultiple.toFixed(
+                  1
+                )}
+                ×
               </strong>
             </div>
 
             <div>
               <span>CONFIDENCE</span>
+
               <strong>
-                {Math.round(opportunity.confidence * 100)}%
+                {Math.round(
+                  opportunity.confidence * 100
+                )}
+                %
               </strong>
             </div>
           </div>
 
           <section className="growth-drawer__section">
             <span>WHY NOW</span>
+
             <h3>{opportunity.whyNow}</h3>
           </section>
 
           <section className="growth-drawer__section">
             <span>WHAT COULD BREAK THIS</span>
+
             <h3>{opportunity.constraint}</h3>
           </section>
 
           <section className="growth-drawer__section">
             <span>NEXT MOVE</span>
+
             <h3>{opportunity.nextAction}</h3>
 
             <p>
-              Owner: <strong>{opportunity.owner}</strong> ·
+              Owner:{" "}
+              <strong>
+                {opportunity.owner}
+              </strong>
+              {" · "}
               expected impact window:{" "}
               <strong>
                 {opportunity.timeToImpact} days
@@ -166,12 +215,22 @@ export function OpportunityDetail({
         </div>
 
         <footer className="growth-drawer__footer">
-          <button type="button" onClick={onClose}>
+          <button
+            type="button"
+            onClick={onClose}
+          >
             Back to ranking
           </button>
 
-          <button type="button" className="growth-drawer__primary">
+          <button
+            type="button"
+            className="growth-drawer__primary"
+            onClick={
+              handleTurnIntoExperiment
+            }
+          >
             Turn into experiment
+
             <ArrowRight size={15} />
           </button>
         </footer>
