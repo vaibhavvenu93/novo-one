@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+
+import { LeakageInvestigation } from "@/components/money/leakage-investigation";
 import { Provenance } from "@/components/shared/provenance";
 import { LeakageItem } from "@/domain/finance";
 
@@ -33,6 +36,9 @@ function formatCategory(category: LeakageItem["category"]) {
 export function LeakageRadar({
   leakages,
 }: LeakageRadarProps) {
+  const [selectedLeakage, setSelectedLeakage] =
+    useState<LeakageItem | null>(null);
+
   const totalImpact = leakages.reduce(
     (total, item) => total + item.monthlyImpact,
     0
@@ -43,98 +49,109 @@ export function LeakageRadar({
   }
 
   return (
-    <section className="leakage-radar">
-      <div className="leakage-radar__header">
-        <div>
-          <span className="money-eyebrow">
-            MONEY LEAKAGE
-          </span>
+    <>
+      <section className="leakage-radar">
+        <div className="leakage-radar__header">
+          <div>
+            <span className="money-eyebrow">
+              MONEY LEAKAGE
+            </span>
 
-          <h2>
-            Novo found {formatMoney(totalImpact)} worth
-            investigating.
-          </h2>
+            <h2>
+              Novo found {formatMoney(totalImpact)} worth
+              investigating.
+            </h2>
 
-          <p>
-            Ranked signals where current economics suggest money
-            may be recoverable. These are investigation prompts,
-            not booked savings.
-          </p>
+            <p>
+              Ranked signals where current economics suggest money
+              may be recoverable. These are investigation prompts,
+              not booked savings.
+            </p>
+          </div>
+
+          <div className="leakage-radar__summary">
+            <span>MONTHLY SIGNAL</span>
+            <strong>{formatMoney(totalImpact)}</strong>
+            <small>{leakages.length} opportunities</small>
+          </div>
         </div>
 
-        <div className="leakage-radar__summary">
-          <span>MONTHLY SIGNAL</span>
-          <strong>{formatMoney(totalImpact)}</strong>
-          <small>{leakages.length} opportunities</small>
-        </div>
-      </div>
-
-      <div className="leakage-radar__list">
-        {leakages.map((item, index) => (
-          <article
-            className="leakage-item"
-            key={item.id}
-          >
-            <div className="leakage-item__rank">
-              {String(index + 1).padStart(2, "0")}
-            </div>
-
-            <div className="leakage-item__body">
-              <div className="leakage-item__meta">
-                <span>{formatCategory(item.category)}</span>
-
-                <Provenance type={item.evidence} />
-              </div>
-
-              <h3>{item.title}</h3>
-
-              <p>{item.action}</p>
-
-              <div className="leakage-item__confidence">
-                <div className="leakage-item__confidence-label">
-                  <span>Confidence</span>
-                  <strong>
-                    {Math.round(item.confidence * 100)}%
-                  </strong>
-                </div>
-
-                <div className="leakage-item__confidence-track">
-                  <span
-                    style={{
-                      width: `${item.confidence * 100}%`,
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="leakage-item__impact">
-              <strong>
-                {formatMoney(item.monthlyImpact)}
-              </strong>
-
-              <span>potential / month</span>
-            </div>
-
-            <button
-              className="leakage-item__action"
-              type="button"
-              aria-label={`Investigate ${item.title}`}
+        <div className="leakage-radar__list">
+          {leakages.map((item, index) => (
+            <article
+              className="leakage-item"
+              key={item.id}
             >
-              <span>Investigate</span>
-              <span aria-hidden="true">→</span>
-            </button>
-          </article>
-        ))}
-      </div>
+              <div className="leakage-item__rank">
+                {String(index + 1).padStart(2, "0")}
+              </div>
 
-      <footer className="leakage-radar__footer">
-        <span className="leakage-radar__footer-dot" />
+              <div className="leakage-item__body">
+                <div className="leakage-item__meta">
+                  <span>
+                    {formatCategory(item.category)}
+                  </span>
 
-        Portfolio-level diagnostic signals. Brand and location
-        attribution will activate as transaction, procurement and
-        channel feeds are connected.
-      </footer>
-    </section>
+                  <Provenance type={item.evidence} />
+                </div>
+
+                <h3>{item.title}</h3>
+
+                <p>{item.action}</p>
+
+                <div className="leakage-item__confidence">
+                  <div className="leakage-item__confidence-label">
+                    <span>Confidence</span>
+
+                    <strong>
+                      {Math.round(item.confidence * 100)}%
+                    </strong>
+                  </div>
+
+                  <div className="leakage-item__confidence-track">
+                    <span
+                      style={{
+                        width: `${item.confidence * 100}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="leakage-item__impact">
+                <strong>
+                  {formatMoney(item.monthlyImpact)}
+                </strong>
+
+                <span>potential / month</span>
+              </div>
+
+              <button
+                className="leakage-item__action"
+                type="button"
+                aria-label={`Investigate ${item.title}`}
+                onClick={() => setSelectedLeakage(item)}
+              >
+                <span>Investigate</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </article>
+          ))}
+        </div>
+
+        <footer className="leakage-radar__footer">
+          <span className="leakage-radar__footer-dot" />
+
+          Portfolio-level diagnostic signals. Brand and location
+          attribution will activate as transaction, procurement and
+          channel feeds are connected.
+        </footer>
+      </section>
+
+      <LeakageInvestigation
+        leakage={selectedLeakage}
+        onClose={() => setSelectedLeakage(null)}
+      />
+    </>
   );
 }

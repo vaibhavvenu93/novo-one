@@ -1012,3 +1012,301 @@
     align-items: flex-start;
   }
 }
+/* -------------------------------------------------------
+   LEAKAGE INVESTIGATION
+------------------------------------------------------- */
+
+.investigation-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+
+  border: 0;
+  background: rgba(20, 20, 17, 0.18);
+  backdrop-filter: blur(2px);
+
+  cursor: default;
+}
+
+.investigation-drawer {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(590px, 92vw);
+  height: 100vh;
+
+  background: #f7f7f3;
+  border-left: 1px solid #d7d7d0;
+
+  box-shadow: -20px 0 60px rgba(20, 20, 17, 0.08);
+
+  animation: investigation-enter 180ms ease-out;
+}
+
+@keyframes investigation-enter {
+  from {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.investigation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+
+  padding: 28px 34px 24px;
+
+  border-bottom: 1px solid #ddddD6;
+}
+
+.investigation-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 13px;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #797971;
+}
+
+.investigation-close {
+  display: grid;
+  place-items: center;
+
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid #d9d9d2;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #383834;
+
+  cursor: pointer;
+}
+
+.investigation-close:hover {
+  background: #ededE8;
+}
+
+.investigation-body {
+  flex: 1;
+  overflow-y: auto;
+
+  padding: 34px;
+}
+
+.investigation-hero h2 {
+  max-width: 470px;
+
+  margin: 0;
+
+  font-size: 38px;
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  font-weight: 600;
+
+  color: #171714;
+}
+
+.investigation-hero > p {
+  max-width: 450px;
+
+  margin: 15px 0 0;
+
+  font-size: 13px;
+  line-height: 1.6;
+
+  color: #77776f;
+}
+
+.investigation-numbers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  margin-top: 32px;
+
+  border-top: 1px solid #d9d9d2;
+  border-bottom: 1px solid #d9d9d2;
+}
+
+.investigation-numbers > div {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  padding: 20px 0;
+}
+
+.investigation-numbers > div + div {
+  padding-left: 24px;
+  border-left: 1px solid #d9d9d2;
+}
+
+.investigation-numbers span,
+.investigation-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+
+  color: #92928a;
+}
+
+.investigation-numbers strong {
+  font-size: 27px;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+
+  color: #171714;
+}
+
+.investigation-section {
+  padding: 28px 0;
+
+  border-bottom: 1px solid #deded8;
+}
+
+.investigation-section > p {
+  max-width: 470px;
+
+  margin: 12px 0 0;
+
+  font-size: 13px;
+  line-height: 1.65;
+
+  color: #5f5f59;
+}
+
+.investigation-checks {
+  margin-top: 16px;
+}
+
+.investigation-check {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 13px;
+
+  padding: 12px 0;
+
+  border-top: 1px solid #e2e2dc;
+}
+
+.investigation-check > span {
+  padding-top: 2px;
+
+  font-size: 9px;
+  color: #a0a098;
+}
+
+.investigation-check p {
+  margin: 0;
+
+  font-size: 12px;
+  line-height: 1.55;
+
+  color: #5e5e58;
+}
+
+.investigation-action-section {
+  border-bottom: 0;
+}
+
+.investigation-action-section h3 {
+  max-width: 470px;
+
+  margin: 13px 0 0;
+
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+
+  color: #171714;
+}
+
+.investigation-action-section p strong {
+  color: #171714;
+}
+
+.investigation-footer {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 10px;
+
+  padding: 18px 34px;
+
+  border-top: 1px solid #d8d8d1;
+  background: #f7f7f3;
+}
+
+.investigation-footer button {
+  min-height: 48px;
+
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.investigation-secondary {
+  border: 1px solid #cecec7;
+  background: transparent;
+  color: #55554f;
+}
+
+.investigation-primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  border: 1px solid #171714;
+  background: #171714;
+  color: #ffffff;
+}
+
+.investigation-primary:hover {
+  background: #2b2b27;
+}
+
+@media (max-width: 600px) {
+  .investigation-drawer {
+    width: 100%;
+  }
+
+  .investigation-header,
+  .investigation-body {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .investigation-footer {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .investigation-hero h2 {
+    font-size: 31px;
+  }
+}
