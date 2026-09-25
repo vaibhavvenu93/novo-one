@@ -7,42 +7,71 @@ import {
   useMemo,
   useState,
 } from "react";
+
 import { BrandId } from "@/domain/novo";
 
-type Period = "today" | "7d" | "30d" | "mtd";
+export type Period = "today" | "7d" | "30d" | "mtd";
+
+export type NovoView =
+  | "today"
+  | "money"
+  | "grow"
+  | "operate"
+  | "build"
+  | "50cr"
+  | "90days"
+  | "memory";
 
 interface NovoContextValue {
   brandId: BrandId;
   setBrandId: (brandId: BrandId) => void;
+
   locationId: string;
   setLocationId: (locationId: string) => void;
+
   period: Period;
   setPeriod: (period: Period) => void;
+
+  view: NovoView;
+  setView: (view: NovoView) => void;
 }
 
 const NovoContext = createContext<NovoContextValue | null>(null);
 
 export function NovoProvider({ children }: { children: ReactNode }) {
-  const [brandId, setBrandId] = useState<BrandId>("novo");
+  const [brandIdState, setBrandIdState] = useState<BrandId>("novo");
   const [locationId, setLocationId] = useState("all");
   const [period, setPeriod] = useState<Period>("mtd");
+  const [view, setView] = useState<NovoView>("today");
 
-  const value = useMemo(
+  const setBrandId = (nextBrandId: BrandId) => {
+    setBrandIdState(nextBrandId);
+
+    // Changing business context should reset location and
+    // return the operator to the business overview.
+    setLocationId("all");
+    setView("today");
+  };
+
+  const value = useMemo<NovoContextValue>(
     () => ({
-      brandId,
-      setBrandId: (next: BrandId) => {
-        setBrandId(next);
-        setLocationId("all");
-      },
+      brandId: brandIdState,
+      setBrandId,
       locationId,
       setLocationId,
       period,
       setPeriod,
+      view,
+      setView,
     }),
-    [brandId, locationId, period]
+    [brandIdState, locationId, period, view]
   );
 
-  return <NovoContext.Provider value={value}>{children}</NovoContext.Provider>;
+  return (
+    <NovoContext.Provider value={value}>
+      {children}
+    </NovoContext.Provider>
+  );
 }
 
 export function useNovo() {
