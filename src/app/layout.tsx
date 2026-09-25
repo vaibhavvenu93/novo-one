@@ -3,6 +3,7 @@
 import "@/styles/tokens.css";
 import "@/styles/shell.css";
 import "@/styles/components.css";
+import "@/styles/today.css";
 import "./globals.css";
 
 import { AppShell } from "@/components/layout/app-shell";
