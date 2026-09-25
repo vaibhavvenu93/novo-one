@@ -1,16 +1,11 @@
 ﻿"use client";
 
+import { GrowView } from "@/components/grow/grow-view";
 import { MoneyView } from "@/components/money/money-view";
 import { TodayView } from "@/components/today/today-view";
 import { useNovo } from "@/context/novo-context";
 
 const roomContent = {
-  grow: {
-    eyebrow: "DEMAND",
-    title: "Grow",
-    copy: "Find the next order, customer, school, corporate account, channel and growth loop.",
-  },
-
   operate: {
     eyebrow: "EXECUTION",
     title: "Operate",
@@ -51,6 +46,10 @@ export function CommandCentre() {
 
   if (view === "money") {
     return <MoneyView />;
+  }
+
+  if (view === "grow") {
+    return <GrowView />;
   }
 
   const room = roomContent[view];

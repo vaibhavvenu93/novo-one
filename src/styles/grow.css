@@ -1,0 +1,786 @@
+/* =========================================================
+   NOVO ONE — GROW
+   Growth intelligence / opportunity engine
+   ========================================================= */
+
+.grow-view {
+  width: 100%;
+  padding-bottom: 96px;
+}
+
+.grow-eyebrow,
+.growth-eyebrow {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--ink-tertiary);
+  font-size: 10px;
+  font-weight: 760;
+  letter-spacing: 0.12em;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.growth-hero {
+  padding: 20px 0 0;
+}
+
+.growth-hero__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  padding-bottom: 34px;
+}
+
+.growth-hero__top > div:first-child {
+  max-width: 880px;
+}
+
+.growth-hero h1 {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(42px, 4.3vw, 64px);
+  line-height: 0.98;
+  font-weight: 680;
+  letter-spacing: -0.055em;
+}
+
+.growth-hero__top p {
+  max-width: 900px;
+  margin: 22px 0 0;
+  color: var(--ink-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.growth-hero__top p strong {
+  color: var(--ink-primary);
+  font-weight: 720;
+}
+
+.growth-hero__status {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+  color: var(--ink-tertiary);
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+.growth-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--positive);
+  box-shadow: 0 0 0 4px rgba(35, 122, 75, 0.09);
+}
+
+/* HERO METRICS */
+
+.growth-hero__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.growth-hero-metric {
+  min-height: 148px;
+  padding: 27px 28px 24px;
+  border-left: 1px solid var(--line);
+}
+
+.growth-hero-metric:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.growth-hero-metric > span {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--ink-tertiary);
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: 0.09em;
+}
+
+.growth-hero-metric > strong {
+  display: block;
+  color: var(--ink-primary);
+  font-size: clamp(28px, 2.7vw, 39px);
+  line-height: 1;
+  font-weight: 680;
+  letter-spacing: -0.045em;
+}
+
+.growth-hero-metric > p {
+  margin: 11px 0 0;
+  color: var(--ink-tertiary);
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+/* TOP BET */
+
+.growth-top-bet {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 20px;
+  padding: 19px 21px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.growth-top-bet__label {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  min-width: 0;
+}
+
+.growth-top-bet__label > span {
+  color: var(--ink-tertiary);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.growth-top-bet__label > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.growth-top-bet__label small {
+  color: var(--ink-tertiary);
+  font-size: 8px;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+}
+
+.growth-top-bet__label strong {
+  font-size: 14px;
+  font-weight: 680;
+}
+
+.growth-top-bet__economics {
+  display: flex;
+  align-items: center;
+  gap: 31px;
+  flex: 0 0 auto;
+}
+
+.growth-top-bet__economics > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.growth-top-bet__economics span {
+  color: var(--ink-tertiary);
+  font-size: 8px;
+}
+
+.growth-top-bet__economics strong {
+  font-size: 13px;
+  font-weight: 680;
+}
+
+/* =========================================================
+   SHARED SECTION
+   ========================================================= */
+
+.growth-section,
+.growth-ranking {
+  padding-top: 72px;
+}
+
+.growth-section-header,
+.growth-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.growth-section-header h2,
+.growth-section-heading h2 {
+  margin: 0;
+  font-size: clamp(27px, 2.7vw, 37px);
+  line-height: 1.05;
+  font-weight: 670;
+  letter-spacing: -0.04em;
+}
+
+.growth-section-header p,
+.growth-section-heading p {
+  max-width: 760px;
+  margin: 14px 0 0;
+  color: var(--ink-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.growth-section-meta {
+  padding-bottom: 3px;
+  color: var(--ink-tertiary);
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   GROWTH LANES
+   ========================================================= */
+
+.growth-lanes {
+  border-top: 1px solid var(--line);
+}
+
+.growth-lane {
+  display: grid;
+  grid-template-columns: 42px minmax(280px, 1fr) 145px 110px;
+  align-items: center;
+  gap: 22px;
+  min-height: 88px;
+  border-bottom: 1px solid var(--line);
+}
+
+.growth-lane__rank {
+  color: var(--ink-tertiary);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.growth-lane__main {
+  min-width: 0;
+}
+
+.growth-lane__title {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 13px;
+}
+
+.growth-lane__title strong {
+  font-size: 14px;
+  font-weight: 680;
+}
+
+.growth-lane__title span {
+  color: var(--ink-tertiary);
+  font-size: 9px;
+}
+
+.growth-lane__track {
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--line);
+}
+
+.growth-lane__track > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ink-primary);
+}
+
+.growth-lane__value,
+.growth-lane__confidence {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.growth-lane__value strong,
+.growth-lane__confidence strong {
+  font-size: 15px;
+  font-weight: 680;
+}
+
+.growth-lane__value span,
+.growth-lane__confidence span {
+  color: var(--ink-tertiary);
+  font-size: 8px;
+  letter-spacing: 0.04em;
+}
+
+/* =========================================================
+   OPPORTUNITY RANKING
+   ========================================================= */
+
+.growth-ranking-count {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  padding-bottom: 3px;
+}
+
+.growth-ranking-count strong {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 680;
+}
+
+.growth-ranking-count span {
+  color: var(--ink-tertiary);
+  font-size: 9px;
+}
+
+.growth-ranking-list {
+  border-top: 1px solid var(--line);
+}
+
+.growth-opportunity {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr) 250px;
+  gap: 26px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.growth-opportunity-rank {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 2px;
+}
+
+.growth-opportunity-rank span {
+  color: var(--ink-tertiary);
+  font-size: 7px;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+}
+
+.growth-opportunity-rank strong {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 620;
+}
+
+.growth-opportunity-main {
+  min-width: 0;
+}
+
+.growth-opportunity-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 9px;
+  color: var(--ink-tertiary);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.growth-opportunity-main h3 {
+  max-width: 720px;
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.18;
+  font-weight: 680;
+  letter-spacing: -0.025em;
+}
+
+.growth-opportunity-description {
+  max-width: 780px;
+  margin: 12px 0 0;
+  color: var(--ink-secondary);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.growth-opportunity-reason,
+.growth-opportunity-action {
+  max-width: 780px;
+  margin-top: 18px;
+}
+
+.growth-opportunity-reason > span,
+.growth-opportunity-action > span {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--ink-tertiary);
+  font-size: 7px;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+}
+
+.growth-opportunity-reason p,
+.growth-opportunity-action p {
+  margin: 0;
+  color: var(--ink-secondary);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.growth-opportunity-action p {
+  color: var(--ink-primary);
+  font-weight: 560;
+}
+
+/* ECONOMICS PANEL */
+
+.growth-opportunity-economics {
+  padding-left: 24px;
+  border-left: 1px solid var(--line);
+}
+
+.growth-score {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 18px;
+}
+
+.growth-score > span {
+  margin-right: auto;
+  color: var(--ink-tertiary);
+  font-size: 7px;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+}
+
+.growth-score strong {
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 680;
+  letter-spacing: -0.04em;
+}
+
+.growth-score small {
+  margin-left: 3px;
+  color: var(--ink-tertiary);
+  font-size: 8px;
+}
+
+.growth-economic-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 0;
+  border-top: 1px solid var(--line);
+}
+
+.growth-economic-row span {
+  color: var(--ink-tertiary);
+  font-size: 9px;
+}
+
+.growth-economic-row strong {
+  font-size: 10px;
+  font-weight: 680;
+  white-space: nowrap;
+}
+
+.growth-opportunity-signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 15px;
+}
+
+.growth-opportunity-signals span {
+  padding: 5px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--ink-secondary);
+  font-size: 7px;
+  font-weight: 650;
+}
+
+/* =========================================================
+   DETAIL DRAWER
+   ========================================================= */
+
+.growth-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(20, 20, 18, 0.22);
+  backdrop-filter: blur(2px);
+}
+
+.growth-drawer {
+  display: flex;
+  flex-direction: column;
+  width: min(620px, 92vw);
+  height: 100%;
+  overflow: hidden;
+  border-left: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: -24px 0 70px rgba(0, 0, 0, 0.08);
+}
+
+.growth-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 23px 27px;
+  border-bottom: 1px solid var(--line);
+}
+
+.growth-drawer__header > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.growth-drawer__header .grow-eyebrow {
+  margin: 0;
+}
+
+.growth-drawer__close {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-primary);
+  cursor: pointer;
+}
+
+.growth-drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 34px 28px 48px;
+}
+
+.growth-drawer__hero h2 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.04;
+  font-weight: 680;
+  letter-spacing: -0.045em;
+}
+
+.growth-drawer__hero p {
+  margin: 16px 0 0;
+  color: var(--ink-secondary);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.growth-drawer__metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 30px;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.growth-drawer__metrics > div {
+  padding: 18px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.growth-drawer__metrics span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink-tertiary);
+  font-size: 7px;
+  font-weight: 760;
+  letter-spacing: 0.09em;
+}
+
+.growth-drawer__metrics strong {
+  font-size: 21px;
+  font-weight: 680;
+}
+
+.growth-drawer__section {
+  padding: 27px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.growth-drawer__section > span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--ink-tertiary);
+  font-size: 8px;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+}
+
+.growth-drawer__section h3 {
+  max-width: 530px;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.45;
+  font-weight: 570;
+  letter-spacing: -0.015em;
+}
+
+.growth-drawer__section p {
+  margin: 12px 0 0;
+  color: var(--ink-tertiary);
+  font-size: 10px;
+}
+
+.growth-drawer__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 27px;
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.growth-drawer__footer button {
+  min-height: 38px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink-primary);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.growth-drawer__footer .growth-drawer__primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-color: var(--ink-primary);
+  background: var(--ink-primary);
+  color: var(--surface);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .growth-hero__metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .growth-hero-metric:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .growth-hero-metric:nth-child(4) {
+    border-top: 1px solid var(--line);
+  }
+
+  .growth-lane {
+    grid-template-columns: 35px minmax(220px, 1fr) 115px 90px;
+    gap: 15px;
+  }
+
+  .growth-opportunity {
+    grid-template-columns: 48px minmax(0, 1fr);
+  }
+
+  .growth-opportunity-economics {
+    grid-column: 2;
+    padding: 20px 0 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .growth-hero__top,
+  .growth-section-header,
+  .growth-section-heading,
+  .growth-top-bet {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .growth-hero__status {
+    margin-top: 0;
+  }
+
+  .growth-hero__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .growth-hero-metric,
+  .growth-hero-metric:first-child,
+  .growth-hero-metric:nth-child(3) {
+    padding: 22px 0;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .growth-top-bet__economics {
+    justify-content: space-between;
+  }
+
+  .growth-lane {
+    grid-template-columns: 30px minmax(0, 1fr);
+    padding: 17px 0;
+  }
+
+  .growth-lane__value,
+  .growth-lane__confidence {
+    grid-column: 2;
+  }
+
+  .growth-opportunity {
+    grid-template-columns: 1fr;
+  }
+
+  .growth-opportunity-rank,
+  .growth-opportunity-economics {
+    grid-column: 1;
+  }
+
+  .growth-opportunity-rank {
+    flex-direction: row;
+    align-items: baseline;
+  }
+}
+/* INTERACTIVE OPPORTUNITIES */
+
+.growth-opportunity--interactive {
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.growth-opportunity--interactive:hover {
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.growth-opportunity--interactive:focus-visible {
+  outline: 2px solid var(--ink-primary);
+  outline-offset: -2px;
+}
+
+.growth-opportunity--interactive:hover
+  .growth-opportunity-main h3 {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
