@@ -1,15 +1,10 @@
 ﻿"use client";
 
+import { MoneyView } from "@/components/money/money-view";
 import { TodayView } from "@/components/today/today-view";
 import { useNovo } from "@/context/novo-context";
 
 const roomContent = {
-  money: {
-    eyebrow: "ECONOMICS",
-    title: "Money",
-    copy: "Follow every rupee from customer to contribution. Revenue, food cost, discounts, commissions, procurement and leakage.",
-  },
-
   grow: {
     eyebrow: "DEMAND",
     title: "Grow",
@@ -52,6 +47,10 @@ export function CommandCentre() {
 
   if (view === "today") {
     return <TodayView />;
+  }
+
+  if (view === "money") {
+    return <MoneyView />;
   }
 
   const room = roomContent[view];
